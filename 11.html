@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ใช้กล้องมือถือ</title>
+    <style>
+        video {
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid #ccc;
+        }
+        canvas {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>ใช้กล้องมือถือ</h1>
+    <video id="video" autoplay></video>
+    <button id="snap">ถ่ายภาพ</button>
+    <canvas id="canvas"></canvas>
+    <img id="photo" alt="ภาพที่ถ่าย" />
+
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const photo = document.getElementById('photo');
+        const snapButton = document.getElementById('snap');
+
+        // ขออนุญาตเข้าถึงกล้อง
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+            })
+            .catch(err => {
+                console.error("เกิดข้อผิดพลาดในการเข้าถึงกล้อง:", err);
+            });
+
+        // ฟังก์ชันถ่ายภาพ
+        snapButton.addEventListener('click', () => {
+            const context = canvas.getContext('2d');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const dataURL = canvas.toDataURL('image/png');
+            photo.setAttribute('src', dataURL);
+        });
+    </script>
+</body>
+</html>
