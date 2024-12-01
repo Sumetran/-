@@ -1,0 +1,129 @@
+/* รีเซ็ต CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #313e4c;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding: 1rem;
+  }
+  
+  header {
+    background-color: #313e4c;
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .form-container {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px #0000001a;
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .form-container label {
+    font-weight: bold;
+    white-space: nowrap; /* ไม่ให้ข้อความขึ้นบรรทัดใหม่ */
+  }
+  
+  .form-container input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
+  .action-btn {
+    background-color: #3aa04a;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+  }
+  
+  .action-btn:hover {
+    background-color: #218838;
+  }
+  
+  .result-container {
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px #0000001a;
+    width: 100%;
+    max-width: 500px;
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  .result-container h2 {
+    color: #1890ff;
+    margin-bottom: 1rem;
+  }
+  
+  .result-box {
+    background-color: #f1f1f1;
+    padding: 0.8rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #333;
+    white-space: nowrap; /* ป้องกันข้อความขึ้นบรรทัดใหม่ */
+    overflow-x: auto; /* หากข้อความยาวเกินจอ ให้เลื่อนซ้าย-ขวาได้ */
+  }
+
+  p {
+    color: #ffffff;
+}
+
+.highlight {
+    color: red; /* กำหนดสีแดง */
+    font-weight: bold; /* ตัวหนา */
+  }
+  
+  
+  /* ปรับสเกลให้เหมาะสมกับจอขนาดเล็ก */
+  @media (max-width: 768px) {
+    body {
+      padding: 0.5rem;
+    }
+    .form-container,
+    .result-container {
+      max-width: 100%; /* ใช้ความกว้าง 100% ของหน้าจอ */
+      padding: 0.8rem; /* ลดขนาด Padding */
+    }
+    .form-container input,
+    .action-btn {
+      font-size: 0.9rem; /* ลดขนาดฟอนต์ */
+    }
+    .result-box {
+      font-size: 0.9rem;
+    }
+  }
+  
