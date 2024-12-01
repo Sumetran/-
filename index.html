@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>คำนวณน้ำหนักผลิตภัณฑ์</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>คำนวณน้ำหนักผลิตภัณฑ์</h1>
+  </header>
+  <main>
+    <form class="form-container" id="calculationForm">
+      <label for="input1">น้ำหนักเดิม</label>
+      <input type="number" id="input1" placeholder="กรอกค่าน้ำหนักเดิม" required>
+
+      <label for="input2">ค่า impulses เดิม</label>
+      <input type="number" id="input2" placeholder="กรอกค่า impulses เดิม" required>
+
+      <label for="input3">น้ำหนักที่ต้องการ</label>
+      <input type="number" id="input3" placeholder="กรอกค่าน้ำหนักที่ต้องการ" required>
+
+      <button type="button" class="action-btn" onclick="calculate()">คำนวณ</button>
+    </form>
+
+    <div class="result-container">
+      <h2>ผลลัพธ์</h2>
+      <div id="result" class="result-box">ผลลัพธ์ต่อหน่วยจะแสดงที่นี่</div>
+      <div id="adjusted-result" class="result-box">ผลลัพธ์ที่ต้องปรับจะแสดงที่นี่</div>
+    </div>
+  </main>
+<center>
+
+  <footer>
+    <p>พัฒนาโดย ศุเมธาณร์ เกิดผล ช่างเทคนิค</p>
+  </footer>
+
+</center>
+
+  <script>
+    function calculate() {
+  const input1 = parseFloat(document.getElementById('input1').value);
+  const input2 = parseFloat(document.getElementById('input2').value);
+  const target = parseFloat(document.getElementById('input3').value);
+
+  const resultContainer = document.getElementById('result');
+  const adjustedResultContainer = document.getElementById('adjusted-result');
+
+  if (isNaN(input1) || isNaN(input2) || isNaN(target)) {
+    resultContainer.textContent = "กรุณากรอกข้อมูลให้ครบถ้วน";
+    adjustedResultContainer.textContent = "";
+    return;
+  }
+  if (input2 === 0) {
+    resultContainer.textContent = "ไม่สามารถหารด้วย 0 ได้";
+    adjustedResultContainer.textContent = "";
+    return;
+  }
+
+  const result = input1 / input2;
+  resultContainer.innerHTML = `ผลลัพธ์: <span class="highlight">${result.toFixed(2)}</span>`;
+
+  const multiplier = target / result;
+  const adjustedResult = result * multiplier;
+
+  adjustedResultContainer.innerHTML = 
+    `ค่าใหม่ คือ <span class="highlight">${multiplier.toFixed(2)}</span> ปรับแล้วจะได้: <span class="highlight">${adjustedResult.toFixed(2)} กรัม</span>`;
+}
+
+  </script>
+</body>
+</html>
